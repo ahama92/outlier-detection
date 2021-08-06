@@ -1,2 +1,2 @@
 # outlier-detection
- This project detects the outliers in one dimmentional data.
+ This project detects the outliers in one dimensional data.
