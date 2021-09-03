@@ -48,7 +48,7 @@ def main():
 
 data=[]
 for i in range(0,20):
-    df=pandas.read_csv('./data/test/Burgers-solutionModes-'+str(i)+'.dat',sep=' ',skiprows=2,header=None)
+    df=pandas.read_csv('./data/burgers-test-1/Burgers-solutionModes-'+str(i)+'.dat',sep=' ',skiprows=2,header=None)
     # print(df.size)
     df.rename(columns={list(df)[0]:'iteration'},inplace=True)
     df=df.dropna(axis=1)
