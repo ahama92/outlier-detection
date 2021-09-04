@@ -8,8 +8,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.svm import OneClassSVM
 from sklearn.cluster import DBSCAN
     
-def support_vector_machine_based(threshold=0.005):
-    model = OneClassSVM(nu=0.005, kernel="rbf", gamma=threshold)
+def support_vector_machine_based(threshold=0.1):
+    model = OneClassSVM(nu=0.001, kernel="rbf", gamma=threshold)
     model.fit(data)
     df['support_vector_machine_based']=pandas.Series(model.predict(data))
     anomaly=df.loc[df['support_vector_machine_based']==-1 , [1]]
@@ -56,6 +56,8 @@ def update(iteration=0):
         line[i*2].set_data(df['iteration'],df[1])
         line[i*2+1].set_data(anomaly.index,anomaly[1])
         axes[i].set_ylim([0,1.1*max(df[1])])
+        
+    fig.suptitle('Iteration = {}'.format(iteration), size=14)
     
     return line
 
@@ -68,12 +70,13 @@ for ax, func in zip(axes, func_list):
     anomaly = func()
     line_temp,=ax.plot(df['iteration'],df[1], color='blue', label = 'Normal')
     scatter_temp,=ax.plot(anomaly.index, anomaly[1], 'o', color='red', label = 'Anomaly')
+    ax.legend()
     # print(scatter_temp.get_paths())
     ax.set_ylim([0,1.1*max(df[1])])
     line.append(line_temp)
     line.append(scatter_temp)
     
-title=fig.suptitle('Iteration = {}'.format(1), size=14)
+fig.suptitle('Iteration = {}'.format(1), size=14)
 kwargs = dict(y=0.90, x=0.15, ha='left', va='top')
 for j in range(len(func_list)):
     axes[j].set_title(func_list[j].__name__, **kwargs)

@@ -46,8 +46,8 @@ def main():
         fig.suptitle('Iteration = {}'.format(i+1), size=14)
 
 data=[]
-for i in range(0,50):
-    df=pandas.read_csv('./data/burgers-test-4/res'+str(i)+'.csv',skiprows=2,header=None)
+for i in range(0,10):
+    df=pandas.read_csv('./data/burgers-test-1/res'+str(i)+'.csv',skiprows=2,header=None)
     df.rename(columns={list(df)[0]:'residual'},inplace=True)
     df=df.abs()
     df[df<1e-20]=1e-20
