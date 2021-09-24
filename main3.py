@@ -37,7 +37,7 @@ def density_based_spatial_clustering(eps=0.25, min_samples=10):
 def solve(i=0):
     global df
     global data
-    df=pandas.read_csv('./data/burgers-test-1/Burgers-solutionModes-'+str(i)+'.dat',sep=' ',skiprows=2,header=None)
+    df=pandas.read_csv('./data/roe2d-test-1/Roe2D-solutionModes-'+str(i)+'.dat',sep=' ',skiprows=2,header=None)
     # print(df.size)
     df.rename(columns={list(df)[0]:'iteration'},inplace=True)
     df=df.dropna(axis=1)
@@ -84,8 +84,8 @@ for j in range(len(func_list)):
 matplotlib.pyplot.legend()
 matplotlib.pyplot.show()
 
-anim = animation.FuncAnimation(fig, update, frames=50, interval=20, blit=True)
-anim.save('test_animation.mp4', writer='ffmpeg', fps=2, extra_args=['-vcodec', 'libx264'])
+anim = animation.FuncAnimation(fig, update, frames=459, interval=20, blit=True)
+anim.save('test_animation.mp4', writer='ffmpeg', fps=5, extra_args=['-vcodec', 'libx264'])
     
     
 
